@@ -51,7 +51,7 @@ for d in draws:
             removed += 1
         
         if removed == 100:
-            last_winner = b
+            final_winner = b
             final_draw = d
 
     if final_draw:
@@ -60,5 +60,5 @@ for d in draws:
 winning_sum = sum_board(first_winner)
 print('part 1 answer is', winning_draw * winning_sum)
 
-final_winning_sum = sum_board(last_winner)
+final_winning_sum = sum_board(final_winner)
 print('part 2 answer is', final_draw * final_winning_sum)
