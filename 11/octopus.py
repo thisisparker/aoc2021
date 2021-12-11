@@ -13,13 +13,8 @@ def step(octopi):
     i = 0
     while i < len(flashes):
         x, y = flashes[i]
-        octopi = flash(x, y, octopi)
-
-        for y, row in enumerate(octopi):
-            for x, val in enumerate(row):
-                if val > 9 and (x,y) not in flashes:
-                    flashes.append((x,y))
-
+        octopi, new_flashes = flash(x, y, octopi)
+        flashes.extend([f for f in new_flashes if f not in flashes])
         i += 1 
 
     global global_flash_count
@@ -43,10 +38,13 @@ def flash(x, y, octopi):
     affected_coords = [c for c in affected_coords if 0 <= c[0] < len(octopi[0]) 
                                                   and 0 <= c[1] < len(octopi)]
 
+    new_flashes = []
     for c in affected_coords:
         octopi[c[1]][c[0]] += 1
+        if octopi[c[1]][c[0]] > 9:
+            new_flashes.append(c)
 
-    return octopi
+    return octopi, new_flashes
          
 
 for _ in range(1000):
