@@ -41,7 +41,7 @@ def extend_path(current_path, part2=False):
             elif no_small_multiples(current_path):
                 extend_path(current_path[:] + [c], part2)
         elif c == 'end':
-            paths.append(current_path[:] + [c])
+            paths.append(current_path + [c])
 
 extend_path(['start'], part2=False)
 print(len(paths))
