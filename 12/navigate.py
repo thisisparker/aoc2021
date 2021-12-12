@@ -36,9 +36,9 @@ def extend_path(current_path, part2=False):
         elif not part2 and c in small and c not in current_path[:-1]:
             extend_path(current_path[:] + [c], part2)
         elif part2 and c in small:
-            if no_small_multiples(current_path):
+            if c not in current_path[:-1]:
                 extend_path(current_path[:] + [c], part2)
-            elif c not in current_path[:-1]:
+            elif no_small_multiples(current_path):
                 extend_path(current_path[:] + [c], part2)
         elif c == 'end':
             paths.append(current_path[:] + [c])
